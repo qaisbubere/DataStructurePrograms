@@ -13,18 +13,19 @@ import java.util.*;
 
 public class BalancedParantheses {
 
-	int rear=-1;
-	int front=-1;
-	@SuppressWarnings("rawtypes")
-	
 	static Stack stack = new Stack();
 	static int sizeOfStack=stack.size();
 	static int pushCount=0, popCount=0;
+	
 	public static void main(String args[])
 	{
 		calculation();
+		peek();
 	}
 	
+	/*
+	 * method to calculate balanced parenthesis
+	 */
 	public static void calculation()
 	{
 		Scanner scanner = new Scanner(System.in);
@@ -52,11 +53,12 @@ public class BalancedParantheses {
 		else
 		{ 
 			System.out.println("expression is not balanced");
-		}
-		peek();
-		
+		}	
 	}
 
+	/*
+	 * method to push elements onto stack
+	 */
 	public static void push()
 	{
 		stack.push("(");
@@ -64,6 +66,9 @@ public class BalancedParantheses {
 		sizeOfStack++;
 	}
 	
+	/*
+	 * method to pop elements from stack
+	 */
 	public static void pop()
 	{
 		stack.pop();
@@ -71,6 +76,9 @@ public class BalancedParantheses {
 		sizeOfStack--;
 	}
 	
+	/*
+	 * method to get the front element on stack
+	 */
 	public static void peek()
 	{
 		if(stack.empty()==true)

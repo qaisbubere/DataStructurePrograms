@@ -1,13 +1,13 @@
 /******************************************************************************
- *  Purpose: To find prime numbers between 0 and 1000.
+ *  Purpose: To find prime numbers between 0 and 1000 and print them in a 2D 
+ *			 array form.
  * 
  *  @author  Qais Bubere
  *  @version 1.0
- *  @since   23-10-2017
+ *  @since   24-10-2017
  *
  ******************************************************************************/
 package com.bridgelabz.programs;
-
 import java.util.ArrayList;
 
 public class PrimeNumbers {
@@ -20,22 +20,54 @@ public class PrimeNumbers {
 	
 	
 	/*
-	 * method to find whether prime or not
+	 * method to print prime number in a 2D array
 	 */
 	public static void prime()
 	{
-		
+		int prime=0,place=0,i;
+		int newLine=100;
+		int array1[] = new int[168];
+		int array2[][]=new int[10][100];
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		for(int i=0; i<1000; i++)
+		
+		for(i=2; i<1000; i++)
 		{
 			if(calculation(i) == true)
 			{
-			 list.add(i);
+				array1[place]=i;
+				place++;
 			}
 		}
-		int sizeOfList = list.size();
-		store(list,sizeOfList);
+				
+		place =0;
+		for(int j=0;j<2;j++)
+		{
+			for(int k=0 ; k<84; k++)
+			{
+				array2[j][k] = array1[place];
+				place++;
+			}
+		}
+		
+		for(int j=0;j<2;j++)
+		{
+			for(int k=0 ; k<84; k++)
+			{
+				if(array2[j][k] < newLine)
+				{
+				System.out.print(array2[j][k]+" ");
+				}
+				else
+				{
+					System.out.println();
+					System.out.print(array2[j][k]+" ");
+					newLine = newLine+100;
+				}
+			}
+		}		
 	}
+		
+	
 	
 	/*
 	 * method to calculate prime number one by one
@@ -60,39 +92,4 @@ public class PrimeNumbers {
 			return isPrime; 
 		}
 	}
-	
-	
-	/*
-	 * method to store prime numbers in 2D array
-	 */
-	public static void store(ArrayList list, int size)
-	{
-		int element = 0;
-		int array[][] = new int[13][13];
-		for(int i=0;i<13;i++)
-		{
-			for(int j=0; j<13; j++)
-			{
-				array[i][j] = (int) list.get(element);
-				element++;
-			}
-		}
-		display(array);
-	}
-	
-	
-	/*
-	 * method to display prime numbers in a 2D array
-	 */
-	public static void display(int[][] array)
-	{
-		for(int i=0;i<13;i++)
-		{
-			for(int j=0; j<13;j++)
-			{
-				System.out.println(array[i][j]);
-			}
-		}
-	}
-
 }

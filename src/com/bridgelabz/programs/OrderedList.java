@@ -7,9 +7,9 @@
  *  @since   22-10-2017
  *
  ******************************************************************************/
- 
- import java.util.Scanner;
- import java.io.BufferedReader;
+package com.bridgelabz.programs;
+import java.util.Scanner;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;

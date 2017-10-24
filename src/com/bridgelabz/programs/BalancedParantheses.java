@@ -56,6 +56,7 @@ public class BalancedParantheses {
 		}	
 	}
 
+	
 	/*
 	 * method to push elements onto stack
 	 */
@@ -66,6 +67,7 @@ public class BalancedParantheses {
 		sizeOfStack++;
 	}
 	
+	
 	/*
 	 * method to pop elements from stack
 	 */
@@ -75,6 +77,7 @@ public class BalancedParantheses {
 		popCount++;
 		sizeOfStack--;
 	}
+	
 	
 	/*
 	 * method to get the front element on stack

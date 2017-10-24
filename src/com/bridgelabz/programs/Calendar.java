@@ -19,17 +19,13 @@ public class Calendar
                             "July", "August", "September", "October", "November", "December"};
         int date[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
          
-        if((year%400==0) || ((year%100!=0)&&(year%4==0)))
-        {
-        	date[2]=29;
-        }
+        if((year%400==0) || ((year%100!=0)&&(year%4==0)))     
+        	date[2]=29;     
         int max = 0;
         for(int i=1; i<=12; i++)
         {
-            if(monthName.equalsIgnoreCase(months[i]))
-            {
-                max = date[i];  //Saving maximum day of given month
-            }
+            if(monthName.equalsIgnoreCase(months[i]))       
+                max = date[i];  //Saving maximum day of given month           
         }
         return max;
     }
@@ -45,10 +41,8 @@ public class Calendar
         int dayNumber = 0;
         for(int i=0; i<7; i++)
         {
-            if(dayName.equalsIgnoreCase(days[i]))
-            {
-            	dayNumber = i;  //Saving week day no. given day (e.g. '0' for Sunday)
-            }
+            if(dayName.equalsIgnoreCase(days[i]))        
+            	dayNumber = i;  //Saving week day no. given day (e.g. '0' for Sunday)          
         }
         return dayNumber;
     }
@@ -57,30 +51,24 @@ public class Calendar
     /*
      * method for creating the calendar
      */
-    void fillCalendar(int max, int dayNumber, String monthName, int year)
-    {
+    void fillCalendar(int max, int dayNumber, String monthName, int year){
         int array[][] = new int[6][7];
         int x = 1, z = dayNumber;
      
-        for(int i=0;i<6;i++)
-        {
-            for(int j=dayNumber; j<7; j++)
-            {
+        for(int i=0;i<6;i++){
+            for(int j=dayNumber; j<7; j++){
                 if(x<=max)
-                {
                 	array[i][j] = x;
-                    x++;
-                }
+                    x++;              
             }
             dayNumber = 0;
         }
          
-       for(int j=0; j<z; j++) //Adjustment to bring last (6th) row elements to first row
-        {
+       for(int j=0; j<z; j++){ //Adjustment to bring last (6th) row elements to first row
         	array[0][j]=array[5][j];
         }    
          
-        printCalendar(array, monthName, year); //Calling function to print the calendar
+        printCalendar(array, monthName, year); //Calling method to print the calendar
     }
      
     

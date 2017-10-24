@@ -24,29 +24,35 @@ public class PalindromeChecker {
 	/*
 	 * method to take user input and check for palindrome
 	 */
-	public static void palindromeChecking()
-	{
-		
+	public static void palindromeChecking(){	
 		System.out.println("enter a string");
 		String input = scanner.next();
 		int length = input.length();
-		for(int i=0; i<length ; i++)
-		{
+		
+		for(int i=0; i<length ; i++){
 			deque.addLast(input.charAt(i));
 		}
 		
-		String reverse = new StringBuffer(input).reverse().toString();
-		System.out.println(reverse);
+		//reversing a string
+		char []array= input.toCharArray();
+		char reverse[] = new char[array.length];
+		int j=0,count=0;
 		
-		if(input.compareTo(reverse)==0)
-		{
+		for(int i=array.length-1; i>=0;i--){
+		reverse[j]= array[i];
+		j++;
+		}
+		
+		for(int i=0; i<array.length;i++){
+			for(j=i; j<=i ;j++){
+			if(array[i]==reverse[j])
+				count++;
+			}
+		}
+		
+		if(count==array.length)
 			System.out.println("it is palindrome");
-		}
 		else
-		{
 			System.out.println("not palindrome");
-		}
-		
 	}
-
 }

@@ -7,7 +7,7 @@
  *  @since   19-10-2017
  *
  ******************************************************************************/
-//package com.bridgelabz.programs;
+package com.bridgelabz.programs;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,24 +17,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.lang.model.element.Element;
+
 public class UnOrderedList {
-	static ArrayList<String> list = new ArrayList<String>();
-	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String args[]) throws IOException
 	{
 		unorderedList();
-		elementSearching();
 	}
 	
 	/*
-	 * method 
+	 * method to find element from a list.
 	 */
 	public static void unorderedList() throws IOException
 	{
 		int elementFound=0;
-		//File file =new File("/home/bridgeit/Desktop/unorderedlist.txt");
-		File file = new File("C:/Users/Qais/Desktop/unorderedlist.txt");
+		Scanner scanner = new Scanner(System.in);
+		File file =new File("/home/bridgeit/Desktop/unorderedlist.txt");
 		if(file.exists())
 		{
 			System.out.println("file already exist");
@@ -45,92 +44,76 @@ public class UnOrderedList {
 		}
 		
 		//writing a file
-		//FileWriter filewriter=new FileWriter("/home/bridgeit/Desktop/unorderedlist.txt");    
-		FileWriter filewriter=new FileWriter("C:/Users/Qais/Desktop/unorderedlist.txt");    
+		FileWriter filewriter=new FileWriter("/home/bridgeit/Desktop/unorderedlist.txt");    
 		filewriter.write("this,is,a,program,for,unordered,linked,list");    
 		filewriter.close();
         int length = (int) file.length();
 
 		
         //reading from file
-		FileReader filereader = new FileReader("C:/Users/Qais/Desktop/unorderedlist.txt");
+		FileReader filereader = new FileReader("/home/bridgeit/Desktop/unorderedlist.txt");
 	    BufferedReader bufferedreader = new BufferedReader(filereader);
 		
 	    String string= null;
 	    String []splitted = new String[length];
-        while ((string = bufferedreader.readLine()) != null) 
-        {
+	    while ((string = bufferedreader.readLine()) != null) 
+	    {
             splitted = string.split(",");
-            for(String display:splitted)
-            {
-            System.out.println(display);
-            }
         }
         
         //adding elements to list
+        ArrayList<String> list = new ArrayList<String>();
         for(int i=0;i<splitted.length;i++)
         {
             list.add(splitted[i]);
         }
         System.out.println();
-        for(String i: list)
+    
+        System.out.println();
+        
+        Arrays.sort(splitted);
+        for(String i: splitted)
         {
         	System.out.println(i);
         }
-        Arrays.sort(splitted);
-		System.out.println("sorted elements are");
-		for(String sort:splitted)
-		{
-			System.out.println(sort);
-		}
-		System.out.println();
-	}
-	
-		/*
-		* method to search the element in the list
-		*/
-		public static void elementSearching()
-		{
+        
+        //user input to search a word
         System.out.println("enter a word to search");
         String search= scanner.next();
+        
+        int min = 0;
+		int max = splitted.length - 1;
+		int mid = (min + max) /2;
 		
-		if(list.contains(search))
+		for(int i=0;i<splitted.length;i++)
 		{
-			list.remove(search);
-			askAgain();
+				if(search.compareTo(splitted[mid])==0)
+				{
+					elementFound = 1;
+					list.remove(search);
+					break;
+				}
+				else if(search.compareTo(splitted[mid]) < 0)
+				{
+					max = mid-1;
+					mid = (min+max)/2;
+				}
+				
+				else
+				{
+					min = mid +1;
+					mid = (min+max)/2;
+				}
 		}
-		else
+		if(elementFound!=1)
 		{
 			list.add(search);
-			askAgain();
-		}
-		}
-		
-		
-		/*
-		* method to ask again for inserting or removing an element
-		*/
-		public static void askAgain()
-		{
-			System.out.println("do you want to search again? \n 1:yes \n 2:no");
-			int searchAgain = scanner.nextInt();
-			if(searchAgain == 1)
-			{
-				elementSearching();
-			}
-			else
-			{
-				displayList();
-			}
-		}
-		
-		
-		/*
-		* method to display the final list
-		*/
-		public static void displayList()
-		{
-			System.out.println(list);
-		}   
-    }
 
+		}
+		
+		System.out.println(list);
+		
+        
+        
+	}
+}

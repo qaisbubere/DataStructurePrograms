@@ -14,40 +14,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
- 
- public class OrderedList
- {
+import com.bridgelabz.util.Utility;
+
+ public class OrderedList{
 	 
 	 public static void main(String args[]) throws IOException
 	 {
-		 orderedList();
-	 }
-	 
-	 public static void orderedList() throws IOException
-	 {
-		 File file = new File("C:/Users/Qais/Desktop/Orderedlist.txt");
-		 if(file.exists())
-		 {
-			 System.out.println("file already exist");
-		 }
-		 else
-		 {
-			 System.out.println("file created ");
-		 }
-		 
-		 FileWriter filewriter = new FileWriter("C:/Users/Qais/Desktop/Orderedlist.txt");
-		 filewriter.write("5 6 2 3 7 5 7");
-		 filewriter.close();
-		 
-		 int length = (int)file.length();
-		 
-		 FileReader filereader = new FileReader("C:/Users/Qais/Desktop/Orderedlist.txt");
-		 BufferedReader bufferedreader = new BufferedReader(filereader);
-		 String string=null;
-		 while((string=bufferedreader.readLine())!=null)
-		 {
-			 System.out.println(string);
-		 }
-		 
+		Utility.orderedList();
 	 }
  }

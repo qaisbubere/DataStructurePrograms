@@ -38,21 +38,40 @@ public class PalindromeChecker {
 		char reverse[] = new char[array.length];
 		int j=0,count=0;
 		
+		/*
+		 * for loop to reverse a string
+		 */
 		for(int i=array.length-1; i>=0;i--){
 		reverse[j]= array[i];
 		j++;
 		}
+		/*
+		 *  for loop ends
+		 */
 		
+		
+		/*
+		 * for loop to compare original string with reverse string 
+		 */
 		for(int i=0; i<array.length;i++){
 			for(j=i; j<=i ;j++){
 			if(array[i]==reverse[j])
 				count++;
 			}
 		}
+		/*
+		 * for loop ends
+		 */
 		
+		/*
+		 * if-else loop to determine whether it is palindrome or not
+		 */
 		if(count==array.length)
 			System.out.println("it is palindrome");
 		else
 			System.out.println("not palindrome");
+		/*
+		 * if-else loop ends
+		 */
 	}
 }

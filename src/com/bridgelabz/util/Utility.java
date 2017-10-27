@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import com.bridgelabz.util.QueueArray;
 
+
 public class Utility<T> {
 
 	static Scanner scanner = new Scanner(System.in);
@@ -20,6 +21,7 @@ public class Utility<T> {
 	static LinkedList<Integer> Intlinkedlist = new LinkedList<Integer>();
 	static 	Map<Integer,LinkedList<Integer>> hashmap = new HashMap<Integer,LinkedList<Integer>>();
 	static ArrayList list = new ArrayList();
+	QueueArray anagram = new QueueArray();
 	int remainingBalance=10000,count,people,currentBalance;
 	static String string1,string2,reverse;
 	
@@ -120,6 +122,8 @@ public class Utility<T> {
 		}
 		
 		
+/******************************************************************************************************************************************/	
+
 		/*
 		 * method for ordered list
 		 */
@@ -218,6 +222,7 @@ public class Utility<T> {
 			 
 		}
 		
+/******************************************************************************************************************************************/	
 		
 		/*
 		 * method for cash counter
@@ -348,6 +353,7 @@ public class Utility<T> {
 			 */
 		}
 		
+/******************************************************************************************************************************************/	
 		
 		/*
 		 * method to print prime number in a 2D array
@@ -423,7 +429,7 @@ public class Utility<T> {
 			}
 		}
 		
-		
+/******************************************************************************************************************************************/	
 		/*
 		 * method to find prime numbers
 		 */
@@ -467,50 +473,100 @@ public class Utility<T> {
 		 * method for finding anagrams out of prime numbers
 		 */
 		public static void anagramFinding(int[] primeArray){
-		try{	
+			
+			boolean isAnagram=false;
+			int position1=0,position2=0;
+			int anagram[] = new int[primeArray.length];
+			int notAnagram[] = new int[primeArray.length];
+			
+			for(int i=0;i<primeArray.length;i++)
+			{
+				for(int j=i+1;j<primeArray.length;j++)
+				{
+				int number1 = primeArray[i];
+				int number2 = primeArray[j];
+				isAnagram=anagram(number1,number2);
+				
+				if(isAnagram==true){
+					anagram[position1]=number1;
+					position1++;
+				}
+				else
+					notAnagram[position2]=number1;
+					position2++;
+				}
+			}
+					System.out.println("anagrams are");
+					for(int l:anagram){
+						System.out.print(l+" ");
+					}
+					System.out.println();
+					System.out.println("non anagrams are");
+					for(int m:notAnagram){
+						System.out.print(m+" ");
+					}
+			}
+		
+		public static boolean anagram(int element1,int element2){
+			boolean isAnagram=false;
 			int count=0;
-			int []array1 = new int[168];
-		int []array2 = new int[168];
-			int []number = new int[168];
-			System.out.println("qais");
-			for(int i=0; i<168; i++){
-				array1[i] = primeArray[i];
-				string1 = array1.toString();
-				//reverse =new StringBuffer(string1).reverse().toString();
-				//number[i] = Integer.parseInt(reverse);
-				for(int j=i+1; j<168;j++){
-					array2[j] = primeArray[j];
-					string2 = array1.toString();
-					count=0;
-					for(int a=0; a<string1.length();i++){
-						for(int b=0; b<string2.length();b++){
-							if(string1.charAt(a) == string2.charAt(b)){
-								char temp =string2.charAt(b) ;
-								temp='$';
-								count++;
-								break;
-							}
+			String string1 = Integer.toString(element1);
+			String string2 = Integer.toString(element2);
+			System.out.println(string1);
+			System.out.println(string2);
+			//String space1 = string1.replaceAll(" ","");
+			//String space2 = string2.replaceAll(" ","");
+			//String lower1 = string1.toLowerCase();
+			//String lower2 = string2.toLowerCase();
+			char[] array1 = string1.toCharArray();
+			char[] array2 = string2.toCharArray();
+			
+			
+			if (array1.length == array2.length) 
+			{
+				for (int i = 0; i < array1.length; i++) {
+					for (int j = i+1; j < array1.length; j++) {
+						if (array1[i] > array1[j]) {
+							char temp = array1[i];
+							array1[i] = array1[j];
+							array1[j] = temp;
 						}
 					}
-					if(count==string1.length()){
-						System.out.println("it is anangram");
-					}
-					else{
-					System.out.println("not anagram");
+				}
+
+				for (int i = 0; i < array1.length; i++) {
+					for (int j = i+1; j < array1.length; j++) {
+						if (array2[i] > array2[j]) {
+							char temp = array2[i];
+							array2[i] = array2[j];
+							array2[j] = temp;
+						}
 					}
 				}
-				//string1="";
-				//reverse="";
+
+				for (int i = 0; i < array1.length; i++) {
+					for (int j = i; j <=i; j++) {
+						if (array1[i] == array2[j]) {
+							count++;	
+						}
+					}
+				}
+				if (count == array1.length) {
+					isAnagram=true;
+
+				} 
+				else {
+					isAnagram = false;
+				}
+			} 
+			else 
+			{
+				isAnagram = false;
 			}
-			
-			
-		
-		}
-		catch(NumberFormatException e){
-			
-		}
+			return isAnagram;
 		}
 		
+/******************************************************************************************************************************************/	
 		
 		/*
 		 * method for hash map
@@ -588,20 +644,10 @@ public class Utility<T> {
 		public static void addToSlot(int element){
 			int remainder =0 ;
 			remainder = element % 11;
-			hashmap.get(remainder).add(element);
-			
+			hashmap.get(remainder).add(element);	
 		}
 		
-		
-		/*
-		 * method to calculate total number of binary trees
-		 */
-		public static void binarySearchTree()
-		{
-			int count =0;
-			System.out.println("enter total nodes");
-			int node = scanner.nextInt();
-			
-			long C = factorial(2*node);
-		}
+/******************************************************************************************************************************************/	
+	
+	
 }
